@@ -1,0 +1,4 @@
+#!/usr/bin/env ruby
+
+# require 'a2'
+puts "ok"

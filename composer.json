@@ -1,0 +1,33 @@
+{
+    "name": "jubayed/a2",
+    "description": "Start a2platform serve command.",
+    "license": "proprietary",
+    "keywords": ["a2", "a2platform"],
+    "authors": [
+        {
+            "name": "Jubayed Hossain",
+            "email": "support@jubayed.net"
+        }
+    ],
+    "require": {
+        "php": "^8.0",
+        "guzzlehttp/guzzle": "^7.4",
+        "symfony/console": "^6.1",
+        "symfony/filesystem": "^6.1",
+        "symfony/finder": "^6.1",
+        "symfony/process": "^6.1",
+        "symfony/yaml": "^6.1",
+        "monolog/monolog": "^3.1"
+    },
+    "bin": [
+        "php/bin/a2"
+    ],
+    "autoload": {
+        "psr-4": {
+            "Jubayed\\A2\\": "php/src/"
+        },
+        "files": [
+            "php/src/Helpers.php"
+        ]
+    }
+}
