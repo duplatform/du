@@ -181,7 +181,7 @@ if (!function_exists('a2_path')) {
 
     function a2_path($path)
     {
-        $base_path = getcwd() . DIRECTORY_SEPARATOR . '.a2platform' . DIRECTORY_SEPARATOR;
+        $base_path = getcwd() . DIRECTORY_SEPARATOR . '.duplatform' . DIRECTORY_SEPARATOR;
         $path = $base_path . str_replace('/', DIRECTORY_SEPARATOR, $path);
 
         // ensure directories

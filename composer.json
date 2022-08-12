@@ -1,8 +1,8 @@
 {
-    "name": "jubayed/a2",
+    "name": "jubayed/du",
     "description": "Start a2platform serve command.",
     "license": "proprietary",
-    "keywords": ["a2", "a2platform"],
+    "keywords": ["du", "a2platform"],
     "authors": [
         {
             "name": "Jubayed Hossain",

@@ -42,7 +42,7 @@
     <h1>File Not Found.</h1>
     <div class="t-box">
         <span>Index</span> &nbsp;/&nbsp;
-        <a class="a2-link" href="//127.0.0.1:8011/a2"> A2 Panel</a>
+        <a class="a2-link" href="//127.0.0.1:8011/du"> Du Panel</a>
     </div>
     <table>
         <tr>
