@@ -10,25 +10,3 @@
                                                                        By Jubayed
                                                                            
 ```
-
-# Install
-
-ruby
-```sh
-gem install a2
-```
-
-php
-```sh
-composer require jubayed/a2
-```
-
-node
-```sh
-npm i a2
-```
-
-python
-```sh
-pip install a2
-```
