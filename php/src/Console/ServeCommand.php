@@ -128,7 +128,7 @@ class ServeCommand extends Command
 |    \|  |  |  _  |  |  |  _  |_   _|   __|     | __  |     |
 |  |  |  |  |   __|  |__|     | | | |   __|  |  |    -| | | |
 |____/|_____|__|  |_____|__|__| |_| |__|  |_____|__|__|_|_|_|</comment>
-                                                    <info>By Jubayed</info>
+                                                    <info>By Jubayed</info>'
        );
     }
 
@@ -140,6 +140,7 @@ class ServeCommand extends Command
     public function getToken()
     {
         $helper = $this->getHelper('question');
+
         $question = new Question("A2-TOKEN?");
         $token = $helper->ask($this->input, $this->output, $question);
 
