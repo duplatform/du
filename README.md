@@ -1,4 +1,4 @@
-# Example project
+# duplatform
 
 ```
             ___   _____   _         _______  ______  ____   _____   __  __ 
