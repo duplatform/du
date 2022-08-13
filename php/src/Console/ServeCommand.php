@@ -117,7 +117,6 @@ class ServeCommand extends Command
         ];
     }
 
-
     /**
      * Art line
      */
