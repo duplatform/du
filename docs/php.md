@@ -11,7 +11,7 @@
 
 # Install
 ```sh
-composer global require jubayed/a2:dev-main
+composer global require jubayed/du:dev-main
 ```
 
 create a directory
