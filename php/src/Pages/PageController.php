@@ -31,8 +31,12 @@ class PageController
             $mime = 'text/javascript';
         } elseif (str_ends_with($path, '.css')) {
             $mime = 'text/css';
+        } elseif (str_ends_with($path, '.ttf') ||str_ends_with($path, '.ttf2') ||str_ends_with($path, '.otf') ||str_ends_with($path, '.otf2') ) {
+            $mime = 'application/octet-stream';
+        } elseif (str_ends_with($path, '.eot') ||str_ends_with($path, '.eot2') ) {
+            $mime = 'application/vnd.ms-fontobject';
         } else {
-            $mime = mime_content_type($path);
+            $mime = mime_content_type(realpath($path));
         }
 
         header('Content-Type: '. $mime);
