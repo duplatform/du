@@ -9,8 +9,8 @@
 # Local History for Visual Studio Code
 .history/
 
-.a2platform/
-/.a2platform/
+.duplatform/
+/.duplatform/
 _html/*
 
 ##### Composer

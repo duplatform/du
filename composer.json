@@ -1,8 +1,8 @@
 {
     "name": "jubayed/du",
-    "description": "Start a2platform serve command.",
+    "description": "Start duplatform serve command.",
     "license": "proprietary",
-    "keywords": ["du", "a2platform"],
+    "keywords": ["du", "duplatform"],
     "authors": [
         {
             "name": "Jubayed Hossain",
@@ -10,7 +10,7 @@
         }
     ],
     "require": {
-        "php": "^8.0",
+        "php": "^8.1",
         "guzzlehttp/guzzle": "^7.4",
         "symfony/console": "^6.1",
         "symfony/filesystem": "^6.1",
@@ -20,9 +20,14 @@
         "monolog/monolog": "^3.1"
     },
     "bin": [
+<<<<<<< HEAD
         "php/bin/a2",
         "php/bin/du",
         "php/bin/d"
+=======
+        "php/bin/d",
+        "php/bin/du"
+>>>>>>> aa20fbfe7961ab7655a083f018ec978b72efb4d5
     ],
     "autoload": {
         "psr-4": {

@@ -117,19 +117,19 @@ class ServeCommand extends Command
         ];
     }
 
-
     /**
      * Art line
      */
     public function artLine()
     {
         $this->output->writeln('
-              ___  _____  _       _______ ______ ____  _____  __  __ 
-        /\   |__ \|  __ \| |   /\|__   __|  ____/ __ \|  __ \|  \/  |
-       /  \     ) | |__) | |  /  \  | |  | |__ | |  | | |__) | \  / |
-      / /\ \   / /|  ___/| | / /\ \ | |  |  __|| |  | |  _  /| |\/| |
-     / ____ \ / /_| |    | |/ ____ \| |  | |   | |__| | | \ \| |  | |
-    /_/    \_\____|_|    |_/_/    \_\_|  |_|    \____/|_|  \_\_|  |_|'
+  _____  _____  _            _______ ______ ____  _____  __  __ 
+ |  __ \|  __ \| |        /\|__   __|  ____/ __ \|  __ \|  \/  |
+ | |  | | |__) | |       /  \  | |  | |__ | |  | | |__) | \  / |
+ | |  | |  ___/| |      / /\ \ | |  |  __|| |  | |  _  /| |\/| |
+ | |__| | |    | |____ / ____ \| |  | |   | |__| | | \ \| |  | |
+ |_____/|_|    |______/_/    \_\_|  |_|    \____/|_|  \_\_|  |_|
+                                                    <info>By Jubayed</info>'
        );
     }
 
@@ -141,6 +141,7 @@ class ServeCommand extends Command
     public function getToken()
     {
         $helper = $this->getHelper('question');
+
         $question = new Question("A2-TOKEN?");
         $token = $helper->ask($this->input, $this->output, $question);
 

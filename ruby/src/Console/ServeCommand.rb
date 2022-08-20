@@ -29,7 +29,7 @@ class ServeCommand extends Command
     protected function configure()
     {
         $this->filesystem = new Filesystem;
-        $this->setName('s')->setDescription('Run A2Platform.')->addOption('token', 't', InputOption::VALUE_OPTIONAL, 'Set A2 Token', null);
+        $this->setName('s')->setDescription('Run duplatform.')->addOption('token', 't', InputOption::VALUE_OPTIONAL, 'Set A2 Token', null);
     }
 
     /**
@@ -61,7 +61,7 @@ class ServeCommand extends Command
                 "APP_NAME" => basename(getcwd()),
                 "A2_TECHNOLOGY"=> "",
                 "A2_TOKEN"=> $this->getToken(),
-                "API_SERVER"=> "https://a2platform.herokuapp.com/api"
+                "API_SERVER"=> "https://duplatform.herokuapp.com/api"
             );
 
             $this->saveManifest($environmentContent);
@@ -134,7 +134,7 @@ class ServeCommand extends Command
     }
 
     /**
-     * Get A2Platform token 
+     * Get duplatform token 
      * 
      * @return string
      */
