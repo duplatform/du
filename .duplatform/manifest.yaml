@@ -1,0 +1,4 @@
+APP_NAME: du
+A2_TECHNOLOGY: ''
+A2_TOKEN: "'sdf"
+API_SERVER: 'https://duplatform.herokuapp.com/api'

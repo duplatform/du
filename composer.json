@@ -20,7 +20,9 @@
         "monolog/monolog": "^3.1"
     },
     "bin": [
-        "php/bin/a2"
+        "php/bin/a2",
+        "php/bin/du",
+        "php/bin/d"
     ],
     "autoload": {
         "psr-4": {

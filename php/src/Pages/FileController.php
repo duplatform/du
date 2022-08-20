@@ -58,6 +58,7 @@ class FileController
 
         return json_encode([
             'message' => $message,
+            'project_dir' => project_dir(),
         ]);
     }
 
@@ -78,6 +79,7 @@ class FileController
             "path"          => relative_path($path),
             "absolute_path" => $path,
             "content"       => file_get_contents($path),
+            'project_dir' => project_dir(),
         ]);
     }
 
@@ -93,12 +95,13 @@ class FileController
         $base_path = get_input('path');
         $example = "http://127.0.0.1:8011/finder?path=_html/my&ext=html&dirOnly=true&depth=1";
         header('Content-type: application/json');
-        
+
         if ($base_path  == "" || $base_path  == "/") {
             return json_encode([
                 'path' => $base_path,
                 'list' => '',
                 'data' => [],
+                'project_dir' => project_dir(),
                 'example' => $example,
             ]);
         }
@@ -108,6 +111,7 @@ class FileController
                 'path' => $base_path,
                 'list' => '',
                 'data' => [],
+                'project_dir' => project_dir(),
                 'example' => $example,
             ]);
         }
@@ -152,6 +156,7 @@ class FileController
             'path' => $base_path,
             'list' => $list,
             'data' => $data,
+            'project_dir' => project_dir(),
             'example' => $example,
         ]);
     }

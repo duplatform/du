@@ -35,6 +35,7 @@ class PageController
             $mime = mime_content_type($path);
         }
 
+
         header('Content-Type: '. $mime);
         return file_get_contents($path);
     }

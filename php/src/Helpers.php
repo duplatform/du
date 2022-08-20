@@ -208,7 +208,6 @@ if (!function_exists('log')) {
     }
 }
 
-
 /**
  * Set log file 
  * 
@@ -223,4 +222,20 @@ if (!function_exists('file_log')) {
         return Log::info($type, $path);
     }
 }
+
+
+/**
+ * Project name
+ * 
+ * @return string
+ */
+if (!function_exists('project_dir')) {
+
+    function project_dir()
+    {
+        $project_dir = explode(DIRECTORY_SEPARATOR, getcwd());
+        return end($project_dir);
+    }
+}
+
 
