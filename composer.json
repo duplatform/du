@@ -20,14 +20,9 @@
         "monolog/monolog": "^3.1"
     },
     "bin": [
-<<<<<<< HEAD
         "php/bin/a2",
         "php/bin/du",
         "php/bin/d"
-=======
-        "php/bin/d",
-        "php/bin/du"
->>>>>>> aa20fbfe7961ab7655a083f018ec978b72efb4d5
     ],
     "autoload": {
         "psr-4": {
