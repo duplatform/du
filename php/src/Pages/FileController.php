@@ -204,6 +204,8 @@ class FileController
         // save data
         if(count($urls)){
             file_put_contents($file, Yaml::dump($urls));
+        }else {
+            file_put_contents($file, Yaml::dump([]));
         }
     }
 }
