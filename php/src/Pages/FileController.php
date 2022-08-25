@@ -187,22 +187,18 @@ class FileController
 
         $client = new Client();
         foreach ($urls as $key => $url) {
-            try {
-                $res = $client->request('GET', $urls[$key], ['headers' => array(
-                    'A2-TECHNOLOGY' => getenv('A2_TECHNOLOGY'),
-                    'A2-TOKEN' => getenv('A2_TOKEN'),
-                    'Content-Type: text/plain'
-                )]);
-                if ($res->getStatusCode() == 200) {
-    
-                    $path = \explode('?path=', $urls[$key])[1];
-                    if(!file_exists($path=base_path($path))){
-                        \file_put_contents($path, $res->getBody());
-                    }
-                    unset($urls[$key]);
+            $res = $client->request('GET', $urls[$key], ['headers' => array(
+                'A2-TECHNOLOGY' => getenv('A2_TECHNOLOGY'),
+                'A2-TOKEN' => getenv('A2_TOKEN'),
+                'Content-Type: text/plain'
+            )]);
+            if ($res->getStatusCode() == 200) {
+
+                $path = \explode('?path=', $urls[$key])[1];
+                if(!file_exists($path=base_path($path))){
+                    \file_put_contents($path, $res->getBody());
                 }
-            } catch (\Throwable $th) {
-                //throw $th;
+                unset($urls[$key]);
             }
         }
         // save data
