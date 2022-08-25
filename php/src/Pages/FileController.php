@@ -172,7 +172,7 @@ class FileController
         $response = json_decode(file_get_contents('php://input'), true);
         
         if(!file_exists($file)){
-            file_put_contents($file, Yaml::dump([]));
+            file_put_contents($file, '');
         }
 
         if(isset($response['urls'])){
@@ -205,7 +205,7 @@ class FileController
         if(count($urls)){
             file_put_contents($file, Yaml::dump($urls));
         }else {
-            file_put_contents($file, Yaml::dump([]));
+            file_put_contents($file, '');
         }
     }
 }
