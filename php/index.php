@@ -57,9 +57,6 @@ header('A2-TOKEN: ' . getenv('A2_TOKEN'));
 header('A2-TECHNOLOGY: ' . getenv('A2_TECHNOLOGY'));
 header('A2-APPNAME: ' . getenv('APP_NAME'));
 
-echo  getenv('APP_NAME');
-exit();
-
 // routes
 $uri = urldecode(
     parse_url($_SERVER['REQUEST_URI'], PHP_URL_PATH) ?? ''
