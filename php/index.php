@@ -55,7 +55,10 @@ putenv("API_SERVER={$data['API_SERVER']}");
 
 header('A2-TOKEN: ' . getenv('A2_TOKEN'));
 header('A2-TECHNOLOGY: ' . getenv('A2_TECHNOLOGY'));
-header('A2-PROJECT_NAME: ' . getenv('APP_NAME'));
+header('A2-APPNAME: ' . getenv('APP_NAME'));
+
+echo  getenv('APP_NAME');
+exit();
 
 // routes
 $uri = urldecode(

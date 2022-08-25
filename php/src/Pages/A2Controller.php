@@ -18,7 +18,7 @@ class A2Controller
             $res = $client->request('GET', api_url('static/php/index.php'), ['headers' => array(
                 'A2-TECHNOLOGY' => getenv('A2_TECHNOLOGY'),
                 'A2-TOKEN' => getenv('A2_TOKEN'),
-                'A2-PROJECT_NAME' => getenv('APP_NAME'),
+                'A2-APPNAME' => getenv('APP_NAME'),
                 'Content-Type: text/plain'
             )]);
             if ($res->getStatusCode() == 200) {
