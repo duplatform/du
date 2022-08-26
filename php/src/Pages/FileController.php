@@ -40,11 +40,16 @@ class FileController
                 $filesystem->remove($path);
                 $message = "File successfull deleted.";
                 file_log('delete', relative_path($path) . "[" . __LINE__ . "]");
-            } elseif ($data['type'] == 'create' && !$filesystem->exists($path)) {
-                ensureDirectoryExists(dirname($path));
-                $filesystem->dumpFile($path, $data['content']);
-                $message = "File successfull created.";
-                file_log('create', relative_path($path) . "[" . __LINE__ . "]");
+            } elseif ($data['type'] == 'create') {
+                if($filesystem->exists($path)){
+                    $message = "File allready exists. [".relative_path($path) ."]";
+                    file_log('fail_exists', relative_path($path) . "[" . __LINE__ . "]");
+                }else{
+                    ensureDirectoryExists(dirname($path));
+                    $filesystem->dumpFile($path, $data['content']);
+                    $message = "File successfull created.";
+                    file_log('create', relative_path($path) . "[" . __LINE__ . "]");
+                }
             } elseif ($data['type'] == 'replace') {
                 ensureDirectoryExists(dirname($path));
                 $filesystem->dumpFile($path, $data['content']);
