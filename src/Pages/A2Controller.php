@@ -28,7 +28,7 @@ class A2Controller
 
                 if(!file_exists($file_path)){
                     file_put_contents($file_path, $content);
-                }else if(file_get_contents($file_path) != $content) {
+                }else if(file_exists($file_path) && file_get_contents($file_path) != $content) {
                     file_put_contents($file_path, $content);
                 }
 
