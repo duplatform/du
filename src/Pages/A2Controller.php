@@ -4,6 +4,7 @@ namespace Jubayed\A2\Pages;
 
 use GuzzleHttp\Client;
 use GuzzleHttp\Exception\ClientException;
+use GuzzleHttp\Exception\ConnectException;
 
 class A2Controller
 {
@@ -12,8 +13,8 @@ class A2Controller
      *
      */
     public function index()
-    {        
-        $file_path = fixed_path(__DIR__. "/../../static/index.html");
+    {
+        $file_path = fixed_path(__DIR__ . "/../../static/index.html");
 
         try {
             $client = new Client();
@@ -26,24 +27,30 @@ class A2Controller
             if ($res->getStatusCode() == 200) {
                 $content = (string)$res->getBody();
 
-                if(!file_exists($file_path)){
+                if (!file_exists($file_path)) {
                     file_put_contents($file_path, $content);
-                }else if(file_exists($file_path) && file_get_contents($file_path) != $content) {
+                } else if (file_exists($file_path) && file_get_contents($file_path) != $content) {
                     file_put_contents($file_path, $content);
                 }
 
                 header('Content-Type: text/html');
                 return $content;
             }
-
         } catch (ClientException $e) {
 
-            if(file_exists($file_path)){
+            if (file_exists($file_path)) {
                 header('Content-Type: text/html');
                 return file_get_contents($file_path);
             }
-            
+
             return '<div  style="padding: 20px;background-color: #f44336;color: white;"><strong>Error</strong> Tocken invalid or server not response.</div>';
+        } catch (ConnectException $e) {
+            if (file_exists($file_path)) {
+                header('Content-Type: text/html');
+                return file_get_contents($file_path);
+            }
+
+            return "";
         }
 
         return abort(404);
@@ -55,7 +62,7 @@ class A2Controller
     public function static($dir, $file)
     {
         $path = "static/{$dir}/{$file}";
-        $file_path = __DIR__. "/../../{$path}";
+        $file_path = __DIR__ . "/../../{$path}";
 
         $min  = 'text/plain';
         if ($dir == 'js') {
@@ -64,7 +71,7 @@ class A2Controller
             $min = 'text/css';
         }
 
-        if(file_exists($file_path)){
+        if (file_exists($file_path)) {
             header('Content-Type: ' . $min);
             return file_get_contents($file_path);
         }
@@ -80,12 +87,12 @@ class A2Controller
 
                 $content = (string)$res->getBody();
 
-                if(!is_dir($tpath=__DIR__. "/../../static/{$dir}")){
+                if (!is_dir($tpath = __DIR__ . "/../../static/{$dir}")) {
                     mkdir($tpath);
                 }
-                
+
                 file_put_contents($file_path, $content);
-                
+
                 header('Content-Type: ' . $min);
                 return $content;
             }
@@ -101,11 +108,11 @@ class A2Controller
      */
     public function clean()
     {
-        $file_path = fixed_path(dirname(__DIR__, 2). "/static/*/*.*");
+        $file_path = fixed_path(dirname(__DIR__, 2) . "/static/*/*.*");
         $files = [];
 
         foreach (glob($file_path) as $path) {
-            if( file_exists($path) && unlink($path)){
+            if (file_exists($path) && unlink($path)) {
                 $files[] = $path;
             }
         }
