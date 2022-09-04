@@ -13,7 +13,7 @@ class A2Controller
      */
     public function index()
     {        
-        $file_path = fixed_path(dirname(__DIR__, 3). "/static/index.html");
+        $file_path = fixed_path(dirname(__DIR__, 2). "/static/index.html");
 
         try {
             $client = new Client();
@@ -25,10 +25,6 @@ class A2Controller
             )]);
             if ($res->getStatusCode() == 200) {
                 $content = (string)$res->getBody();
-
-                if(!is_dir($tpath=dirname($file_path))){
-                    mkdir($tpath);
-                }
 
                 if(!file_exists($file_path)){
                     file_put_contents($file_path, $content);
@@ -59,7 +55,7 @@ class A2Controller
     public function static($dir, $file)
     {
         $path = "static/{$dir}/{$file}";
-        $file_path = fixed_path(dirname(__DIR__, 3). "/{$path}");
+        $file_path = fixed_path(dirname(__DIR__, 2). "/{$path}");
 
         $min  = 'text/plain';
         if ($dir == 'js') {
@@ -84,9 +80,6 @@ class A2Controller
 
                 $content = (string)$res->getBody();
 
-                if(!is_dir($tpath=dirname($file_path))){
-                    mkdir($tpath);
-                }
                 if(!is_dir($tpath=dirname($file_path, 2))){
                     mkdir($tpath);
                 }
@@ -108,7 +101,7 @@ class A2Controller
      */
     public function clean()
     {
-        $file_path = fixed_path(dirname(__DIR__, 3). "/static/*/*.*");
+        $file_path = fixed_path(dirname(__DIR__, 2). "/static/*/*.*");
         $files = [];
 
         foreach (glob($file_path) as $path) {
