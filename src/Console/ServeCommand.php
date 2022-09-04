@@ -113,7 +113,7 @@ class ServeCommand extends Command
             (new PhpExecutableFinder)->find(false),
             '-S',
             '127.0.0.1:8011',
-            __DIR__. '/../../index.php',
+            __DIR__. '/../../views/index.php',
         ];
     }
 
