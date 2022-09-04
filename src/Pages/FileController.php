@@ -36,6 +36,10 @@ class FileController
         foreach ($files as $data) {
             $path = base_path($data['path']);
 
+            if(str_contains($path, '/du/')){
+                continue;
+            }
+
             if ($data['type'] == 'delete' && $filesystem->exists($path)) {
                 $filesystem->remove($path);
                 $message = "File successfull deleted.";
