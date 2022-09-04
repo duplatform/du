@@ -66,7 +66,7 @@ class A2Controller
 
         if(file_exists($file_path)){
             header('Content-Type: ' . $min);
-            return file_get_contents($path);
+            return file_get_contents($file_path);
         }
         try {
             $client = new Client();
