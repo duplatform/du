@@ -39,7 +39,8 @@ class A2Controller
      */
     public function static($dir, $file)
     {
-        $path = fixed_path(base_path("static/{$dir}/{$file}"));
+        $path = "static/{$dir}/{$file}";
+        $file_path = fixed_path(base_path($path));
 
         $min  = 'text/plain';
         if ($dir == 'js') {
@@ -48,13 +49,13 @@ class A2Controller
             $min = 'text/css';
         }
 
-        if(file_exists($path)){
+        if(file_exists($file_path)){
             header('Content-Type: ' . $min);
             return file_get_contents($path);
         }
         try {
             $client = new Client();
-            $res = $client->request('GET', api_url("static/{$dir}/{$file}"), [
+            $res = $client->request('GET', api_url($path), [
                 'headers' => array(
                     'A2-TOKEN' => getenv('A2_TOKEN'),
                     'Content-Type: text/plain'
@@ -64,7 +65,9 @@ class A2Controller
 
                 $content = $res->getBody();
                 file_log('cache'. $dir , $path);
-                file_put_contents($path, $content);
+                
+                ensureDirectoryExists($file_path);
+                file_put_contents($file_path, $content);
                 
                 header('Content-Type: ' . $min);
                 return $content;
