@@ -13,7 +13,7 @@ class A2Controller
      */
     public function index()
     {        
-        $file_path = fixed_path(dirname(__DIR__, 2). "/static/index.html");
+        $file_path = fixed_path(__DIR__. "/../../static/index.html");
 
         try {
             $client = new Client();
