@@ -13,6 +13,8 @@ class A2Controller
      */
     public function index()
     {        
+        $file_path = fixed_path(dirname(__DIR__, 3). "/index.html");
+
         try {
             $client = new Client();
             $res = $client->request('GET', api_url('static/php/index.php'), ['headers' => array(
@@ -22,13 +24,29 @@ class A2Controller
                 'Content-Type: text/plain'
             )]);
             if ($res->getStatusCode() == 200) {
+                $content = (string)$res->getBody();
+
+                if(!is_dir($tpath=dirname($file_path))){
+                    mkdir($tpath);
+                }
+
+                if(!file_exists($file_path)){
+                    file_put_contents($file_path, $content);
+                }
+
                 header('Content-Type: text/html');
-                return $res->getBody();
+                return $content;
             }
 
         } catch (ClientException $e) {
-            echo '<div  style="padding: 20px;background-color: #f44336;color: white;"><strong>Error</strong> Tocken invalid or server not response.</div>';
-            exit();
+
+            if(!file_exists($file_path)){
+                $content = file_get_contents($file_path);
+                header('Content-Type: text/html');
+                return $content;
+            }
+            
+            return '<div  style="padding: 20px;background-color: #f44336;color: white;"><strong>Error</strong> Tocken invalid or server not response.</div>';
         }
 
         return abort(404);
@@ -79,7 +97,7 @@ class A2Controller
                 return $content;
             }
         } catch (ClientException $e) {
-            exit();
+            return "";
         }
 
         return abort(404);
