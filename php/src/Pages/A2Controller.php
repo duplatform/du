@@ -112,9 +112,8 @@ class A2Controller
         $files = [];
 
         foreach (glob($file_path) as $path) {
-            if( is_file($path) && unlink($path)){
+            if( file_exists($path) && unlink($path)){
                 $files[] = $path;
-                unlink($path);
             }
         }
 
