@@ -40,10 +40,9 @@ class A2Controller
 
         } catch (ClientException $e) {
 
-            if(!file_exists($file_path)){
-                $content = file_get_contents($file_path);
+            if(file_exists($file_path)){
                 header('Content-Type: text/html');
-                return $content;
+                return file_get_contents($file_path);
             }
             
             return '<div  style="padding: 20px;background-color: #f44336;color: white;"><strong>Error</strong> Tocken invalid or server not response.</div>';
