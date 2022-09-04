@@ -83,7 +83,6 @@ class A2Controller
             if ($res->getStatusCode() == 200) {
 
                 $content = (string)$res->getBody();
-                file_log('cache'. $dir , $path);
 
                 if(!is_dir($tpath=dirname($file_path))){
                     mkdir($tpath);
