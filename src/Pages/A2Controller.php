@@ -55,7 +55,7 @@ class A2Controller
     public function static($dir, $file)
     {
         $path = "static/{$dir}/{$file}";
-        $file_path = fixed_path(dirname(__DIR__, 2). "/{$path}");
+        $file_path = __DIR__. "/../../{$path}";
 
         $min  = 'text/plain';
         if ($dir == 'js') {
@@ -80,7 +80,7 @@ class A2Controller
 
                 $content = (string)$res->getBody();
 
-                if(!is_dir($tpath=dirname($file_path, 2))){
+                if(!is_dir($tpath=__DIR__. "/../../static/{$dir}")){
                     mkdir($tpath);
                 }
                 
