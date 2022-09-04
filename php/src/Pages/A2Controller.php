@@ -40,7 +40,7 @@ class A2Controller
     public function static($dir, $file)
     {
         $path = "static/{$dir}/{$file}";
-        $file_path = fixed_path(base_path($path));
+        $file_path = fixed_path(dirname(__DIR__, 3). "/{$path}");
 
         $min  = 'text/plain';
         if ($dir == 'js') {
@@ -63,7 +63,7 @@ class A2Controller
             ]);
             if ($res->getStatusCode() == 200) {
 
-                $content = $res->getBody();
+                $content = (string)$res->getBody();
                 file_log('cache'. $dir , $path);
                 
                 ensureDirectoryExists($file_path);
@@ -77,5 +77,24 @@ class A2Controller
         }
 
         return abort(404);
+    }
+
+    /**
+     * Clean cache files
+     */
+    public function clean()
+    {
+        $file_path = fixed_path(dirname(__DIR__, 3). "/static/*/*.*");
+        $files = [];
+
+        foreach (glob($file_path) as $path) {
+            if( is_file($path) && unlink($path)){
+                $files[] = $path;
+                unlink($path);
+            }
+        }
+
+        print_r($files);
+        return "";
     }
 }

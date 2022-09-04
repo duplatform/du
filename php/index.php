@@ -80,7 +80,11 @@ if($uri == '/du'){
 
     $class = new A2Controller;
     echo $class->static($param[2], $param[3]);
-} else if($uri == '/finder'){
+} else if($uri == '/du/clean'){
+
+    $class = new A2Controller;
+    echo $class->clean();
+}else if($uri == '/finder'){
 
     $class = new FileController;
     echo $class->finder();
