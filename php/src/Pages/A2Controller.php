@@ -117,7 +117,10 @@ class A2Controller
             }
         }
 
+        echo "<pre>";
         print_r($files);
+        echo "</pre>";
+
         return "";
     }
 }
