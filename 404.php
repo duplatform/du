@@ -41,8 +41,7 @@
 <body>
     <h1>File Not Found.</h1>
     <div class="t-box">
-        <span>Index</span> &nbsp;/&nbsp;
-        <a class="a2-link" href="//127.0.0.1:8011/du"> Du Panel</a>
+        <span>Index</span>
     </div>
     <table>
         <tr>
