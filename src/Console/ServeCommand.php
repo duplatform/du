@@ -129,7 +129,7 @@ class ServeCommand extends Command
  | |  | |  ___/| |      / /\ \ | |  |  __|| |  | |  _  /| |\/| |
  | |__| | |    | |____ / ____ \| |  | |   | |__| | | \ \| |  | |
  |_____/|_|    |______/_/    \_\_|  |_|    \____/|_|  \_\_|  |_|
-                                                    <info>By Jubayed</info>'
+                                                        <info>By Jubayed</info>'
        );
     }
 

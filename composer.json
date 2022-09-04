@@ -5,8 +5,7 @@
     "keywords": ["du", "duplatform"],
     "authors": [
         {
-            "name": "Jubayed Hossain",
-            "email": "support@jubayed.net"
+            "name": "Jubayed Hossain"
         }
     ],
     "require": {
@@ -20,16 +19,15 @@
         "monolog/monolog": "^3.1"
     },
     "bin": [
-        "php/bin/a2",
-        "php/bin/du",
-        "php/bin/d"
+        "bin/a2",
+        "bin/d"
     ],
     "autoload": {
         "psr-4": {
-            "Jubayed\\A2\\": "php/src/"
+            "Jubayed\\A2\\": "src/"
         },
         "files": [
-            "php/src/Helpers.php"
+            "src/Helpers.php"
         ]
     }
 }
