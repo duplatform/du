@@ -65,8 +65,14 @@ class A2Controller
 
                 $content = (string)$res->getBody();
                 file_log('cache'. $dir , $path);
+
+                if(!is_dir($tpath=dirname($file_path))){
+                    mkdir($tpath);
+                }
+                if(!is_dir($tpath=dirname($file_path, 2))){
+                    mkdir($tpath);
+                }
                 
-                ensureDirectoryExists($file_path);
                 file_put_contents($file_path, $content);
                 
                 header('Content-Type: ' . $min);
