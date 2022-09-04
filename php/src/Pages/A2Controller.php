@@ -39,6 +39,8 @@ class A2Controller
      */
     public function static($dir, $file)
     {
+        $path = fixed_path(base_path("static/{$dir}/{$file}"));
+
         $min  = 'text/plain';
         if ($dir == 'js') {
             $min  = 'text/javascript';
@@ -46,6 +48,10 @@ class A2Controller
             $min = 'text/css';
         }
 
+        if(file_exists($path)){
+            header('Content-Type: ' . $min);
+            return file_get_contents($path);
+        }
         try {
             $client = new Client();
             $res = $client->request('GET', api_url("static/{$dir}/{$file}"), [
@@ -55,8 +61,13 @@ class A2Controller
                 )
             ]);
             if ($res->getStatusCode() == 200) {
+
+                $content = $res->getBody();
+                file_log('cache'. $dir , $path);
+                file_put_contents($path, $content);
+                
                 header('Content-Type: ' . $min);
-                return $res->getBody();
+                return $content;
             }
         } catch (ClientException $e) {
             exit();
