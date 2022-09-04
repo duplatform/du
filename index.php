@@ -76,10 +76,10 @@ if($uri == '/du'){
 }else if( str_contains($uri, '/static') ){
     $param = explode('/', $uri);
 
-    if(count($param ) != 3){ exit();  }
+    if(count($param ) != 4){ exit();  }
 
     $class = new A2Controller;
-    echo $class->static($param[1], $param[2]);
+    echo $class->static($param[2], $param[3]);
 } else if($uri == '/du/clean'){
 
     $class = new A2Controller;
