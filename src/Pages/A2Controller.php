@@ -61,10 +61,12 @@ class A2Controller
             $min = 'text/css';
         }
 
+        header('Content-Type: ' . $min);
+
         if (file_exists($file_path)) {
-            header('Content-Type: ' . $min);
             return file_get_contents($file_path);
         }
+
         try {
             $client = new Client();
             $res = $client->request('GET', api_url("static/{$dir}/{$file}"), [
@@ -77,9 +79,8 @@ class A2Controller
 
                 $content = (string)$res->getBody();
                 file_put_contents($file_path, $content);
-
-                header('Content-Type: ' . $min);
                 return $content;
+                
             }
         } catch (ClientException $e) {
            
