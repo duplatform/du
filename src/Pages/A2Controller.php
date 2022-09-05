@@ -52,8 +52,7 @@ class A2Controller
      */
     public function static($dir, $file)
     {
-        $path = "static/{$dir}/{$file}";
-        $file_path = __DIR__ . "/../../{$path}";
+        $file_path = __DIR__ . "/../../static/{$dir}/{$file}";
 
         $min  = 'text/plain';
         if ($dir == 'js') {
@@ -68,7 +67,7 @@ class A2Controller
         }
         try {
             $client = new Client();
-            $res = $client->request('GET', api_url($path), [
+            $res = $client->request('GET', api_url("static/{$dir}/{$file}"), [
                 'headers' => array(
                     'A2-TOKEN' => getenv('A2_TOKEN'),
                     'Content-Type: text/plain'
@@ -77,18 +76,14 @@ class A2Controller
             if ($res->getStatusCode() == 200) {
 
                 $content = (string)$res->getBody();
-
-                if (!is_dir($tpath = __DIR__ . "/../../static/{$dir}")) {
-                    mkdir($tpath);
-                }
-
                 file_put_contents($file_path, $content);
 
                 header('Content-Type: ' . $min);
                 return $content;
             }
         } catch (ClientException $e) {
-            return "";
+           
+        } catch (ConnectException $e) {
         }
 
         return abort(404);
