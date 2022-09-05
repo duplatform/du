@@ -8,14 +8,14 @@ use GuzzleHttp\Exception\ConnectException;
 
 class A2Controller
 {
-    public string $indexHtml = "";
+    public $index_path;
     /**
      * Display a listing of the resource.
      *
      */
     public function index()
     {
-        $file_path = fixed_path(__DIR__ . "/../../static/index.html");
+        $this->index_path = fixed_path(__DIR__ . "/../../static/index.html");
 
         try {
             $client = new Client();
@@ -26,47 +26,25 @@ class A2Controller
                 'Content-Type: text/plain'
             )]);
             if ($res->getStatusCode() == 200) {
-                $this->indexHtml = (string)$res->getBody();
+                $content = (string)$res->getBody();
 
-                if (!file_exists($file_path)) {
-                    file_put_contents($file_path, $this->indexHtml);
-                } else if (file_exists($file_path) && file_get_contents($file_path) != $this->indexHtml) {
-                    file_put_contents($file_path, $this->indexHtml);
+                if (!file_exists($this->index_path)) {
+                    file_put_contents($this->index_path, $content);
+                } else if (file_get_contents($this->index_path) != $content) {
+                    file_put_contents($this->index_path, $content);
                 }
-
-                $added = "<head><script  type='text/javascript'>window.localStorage.setItem('A2-TECHNOLOGY', '". getenv('A2_TECHNOLOGY')."');\nwindow.localStorage.setItem('A2-TOKEN', '". getenv('A2_TOKEN')."');\nwindow.localStorage.setItem('A2-APPNAME', '". getenv('APP_NAME')."');</script>";
-                $content = str_replace('<head>', $added, $this->indexHtml);
-
-                return $content;
             }
         } catch (ClientException $e) {
+        } catch (ConnectException $e) {}
 
-            if (file_exists($file_path)) {
-
-                return $this->getIndexFormCache($file_path);
-            }
-
-            return '<div  style="padding: 20px;background-color: #f44336;color: white;"><strong>Error</strong> Tocken invalid or server not response.</div>';
-        } catch (ConnectException $e) {
-            if (file_exists($file_path)) {
-
-                return $this->getIndexFormCache($file_path);
-            }
-
-            return "";
+        if (!file_exists($this->index_path)) {
+            return abort(404);
         }
 
-        return abort(404);
-    }
-
-    public function getIndexFormCache($file_path)
-    {
-        $content =  file_get_contents($file_path);
-
+        $content =  file_get_contents($this->index_path);
         $added = "<head><script  type='text/javascript'>window.localStorage.setItem('A2-TECHNOLOGY', '" . getenv('A2_TECHNOLOGY') . "');\nwindow.localStorage.setItem('A2-TOKEN', '" . getenv('A2_TOKEN') . "');\nwindow.localStorage.setItem('A2-APPNAME', '" . getenv('APP_NAME') . "');</script>";
-        $content = str_replace('<head>', $added, $content);
 
-        return $content;
+        return str_replace('<head>', $added, $content);
     }
 
     /**
