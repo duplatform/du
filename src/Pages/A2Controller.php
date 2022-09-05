@@ -33,27 +33,39 @@ class A2Controller
                     file_put_contents($file_path, $content);
                 }
 
-                header('Content-Type: text/html');
+                $added = "<head><script  type='text/javascript'>window.localStorage.setItem('A2-TECHNOLOGY', '". getenv('A2_TECHNOLOGY')."');\nwindow.localStorage.setItem('A2-TOKEN', '". getenv('A2_TOKEN')."');\nwindow.localStorage.setItem('A2-APPNAME', '". getenv('APP_NAME')."');</script>";
+                $content = str_replace('<head>', $added, $content);
+
                 return $content;
             }
         } catch (ClientException $e) {
 
             if (file_exists($file_path)) {
-                header('Content-Type: text/html');
-                return file_get_contents($file_path);
+
+                return $this->getIndexFormCache($file_path);
             }
 
             return '<div  style="padding: 20px;background-color: #f44336;color: white;"><strong>Error</strong> Tocken invalid or server not response.</div>';
         } catch (ConnectException $e) {
             if (file_exists($file_path)) {
-                header('Content-Type: text/html');
-                return file_get_contents($file_path);
+
+                return $this->getIndexFormCache($file_path);
             }
 
             return "";
         }
 
         return abort(404);
+    }
+
+    public function getIndexFormCache($file_path)
+    {
+        $content =  file_get_contents($file_path);
+
+        $added = "<head><script  type='text/javascript'>window.localStorage.setItem('A2-TECHNOLOGY', '" . getenv('A2_TECHNOLOGY') . "');\nwindow.localStorage.setItem('A2-TOKEN', '" . getenv('A2_TOKEN') . "');\nwindow.localStorage.setItem('A2-APPNAME', '" . getenv('APP_NAME') . "');</script>";
+        $content = str_replace('<head>', $added, $content);
+
+        return $content;
     }
 
     /**
