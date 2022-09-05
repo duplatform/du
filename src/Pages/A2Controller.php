@@ -78,7 +78,7 @@ class A2Controller
             if ($res->getStatusCode() == 200) {
 
                 $content = (string)$res->getBody();
-                file_put_contents($file_path, $content);
+                file_put_contents($file_path, "{$content}");
                 return $content;
                 
             }
