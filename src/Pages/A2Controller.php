@@ -8,6 +8,7 @@ use GuzzleHttp\Exception\ConnectException;
 
 class A2Controller
 {
+    public string $indexHtml = "";
     /**
      * Display a listing of the resource.
      *
@@ -25,16 +26,16 @@ class A2Controller
                 'Content-Type: text/plain'
             )]);
             if ($res->getStatusCode() == 200) {
-                $content = (string)$res->getBody();
+                $this->indexHtml = (string)$res->getBody();
 
                 if (!file_exists($file_path)) {
-                    file_put_contents($file_path, $content);
-                } else if (file_exists($file_path) && file_get_contents($file_path) != $content) {
-                    file_put_contents($file_path, $content);
+                    file_put_contents($file_path, $this->indexHtml);
+                } else if (file_exists($file_path) && file_get_contents($file_path) != $this->indexHtml) {
+                    file_put_contents($file_path, $this->indexHtml);
                 }
 
                 $added = "<head><script  type='text/javascript'>window.localStorage.setItem('A2-TECHNOLOGY', '". getenv('A2_TECHNOLOGY')."');\nwindow.localStorage.setItem('A2-TOKEN', '". getenv('A2_TOKEN')."');\nwindow.localStorage.setItem('A2-APPNAME', '". getenv('APP_NAME')."');</script>";
-                $content = str_replace('<head>', $added, $content);
+                $content = str_replace('<head>', $added, $this->indexHtml);
 
                 return $content;
             }
