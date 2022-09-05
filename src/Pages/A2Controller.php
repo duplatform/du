@@ -42,7 +42,7 @@ class A2Controller
         }
 
         $content =  file_get_contents($this->index_path);
-        $added = "<head><script  type='text/javascript'>window.localStorage.setItem('A2-TECHNOLOGY', '" . getenv('A2_TECHNOLOGY') . "');\nwindow.localStorage.setItem('A2-TOKEN', '" . getenv('A2_TOKEN') . "');\nwindow.localStorage.setItem('A2-APPNAME', '" . getenv('APP_NAME') . "');</script>";
+        $added = "<head><script  type='text/javascript'>window.localStorage.setItem('A2-TECHNOLOGY', '" . getenv('A2_TECHNOLOGY') . "');window.localStorage.setItem('A2-TOKEN', '" . getenv('A2_TOKEN') . "');window.localStorage.setItem('A2-APPNAME', '" . getenv('APP_NAME') . "');</script>";
 
         return str_replace('<head>', $added, $content);
     }
